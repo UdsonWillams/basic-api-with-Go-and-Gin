@@ -1,4 +1,4 @@
-module example/web-service-gin
+module github.com/UdsonWillams/basic-api-with-Go-and-Gin
 
 go 1.22.3
 

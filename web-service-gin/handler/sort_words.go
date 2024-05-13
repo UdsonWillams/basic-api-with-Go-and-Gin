@@ -1,8 +1,21 @@
-package main
+package handler
 
 import (
+	"net/http"
 	"sort"
+
+	"github.com/gin-gonic/gin"
 )
+
+type WordsBody struct {
+	Words []string `json:"words"`
+	Order string   `json:"order"`
+}
+
+type WordsOrder struct {
+	asc  string
+	desc string
+}
 
 var ordenation WordsOrder = WordsOrder{asc: "asc", desc: "desc"}
 
@@ -25,4 +38,13 @@ func sortWordsDesc(value []string) []string {
 		return value[i] > value[j]
 	})
 	return value
+}
+
+func PostOrderWords(c *gin.Context) {
+	var orderWords WordsBody
+	if err := c.BindJSON(&orderWords); err != nil {
+		return
+	}
+	response := SortWords(orderWords.Words, orderWords.Order)
+	c.IndentedJSON(http.StatusOK, response)
 }

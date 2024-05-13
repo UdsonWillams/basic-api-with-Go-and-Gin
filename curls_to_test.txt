@@ -1,0 +1,3 @@
+curl http://localhost:8080/api/v1//words/order --include --header "Content-Type: application/json" --request "POST" --data '{"words": ["elida", "jose", "udson"], "order": "asc"}'
+
+curl http://localhost:8080/api/v1/words/count-vowels --include --header "Content-Type: application/json" --request "POST" --data '{"vowels": ["elida", "jose", "udson", "felipe", "marcos", "joão", "juliano", fernando"]}'
